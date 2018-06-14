@@ -40,6 +40,9 @@ trait DetectsChanges
                 $attributes = array_merge($attributes, static::$logAttributes);
             }
         }
+        if (isset(static::$logAttributesToIgnore) && is_array(static::$logAttributesToIgnore)) {
+            $attributes = array_diff($attributes, static::$logAttributesToIgnore);
+        }
 
         return $attributes;
     }
